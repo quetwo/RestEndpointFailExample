@@ -1,43 +1,15 @@
 services:
 
-  # Front-End configuration for the running application
-  # Exposed for all HTTP and HTTPS traffic, routed via port 8888
+  # Lucee Application for example
   # ---------------
+
   frontend:
-    image: quetwo/okta-telecom-connector:LATEST
+    image: quetwo/restendpointfails:LATEST
     build:
       context: frontend/
     volumes:
       - ./frontend/webroot:/var/www
-    env_file:
-      - ./frontend/secrets.txt
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.frontend.entrypoints=web"
-      - "traefik.http.routers.frontends.entrypoints=websecure"
-      - "traefik.http.routers.frontends.tls=true"
-      - "traefik.http.routers.frontends.tls.certresolver=myresolver"
-      - "traefik.http.routers.frontends.tls.domains[0].main=bbs.cotbbs.org"
-      - "traefik.http.services.web.loadbalancer.server.port=8888"
-
-
-  # Reverse Proxy to handle HTTP/HTTPS traffic.
-  # Port 8080 is exposed to show diag info.  See /proxy/config.toml for proxy config
-  # -----------------
-  proxy:
-    image: traefik:3.2
-    depends_on:
-      - frontend
+    environment:
+      - LUCEE_ADMIN_PASSWORD=admin-password
     ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - cert_db:/shared/certs/
-      - ./proxy/config.toml:/etc/traefik/traefik.toml
-      - ./proxy/logs/:/shared/logs/
-
-# Mounts
-volumes:
-  cert_db:
+      - 8888:8888

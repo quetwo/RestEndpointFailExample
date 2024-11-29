@@ -1,7 +1,7 @@
 component rest="true" restPath="/test"
 {
 
-    public function testFunction() httpMethod="GET"
+    remote function testFunctionGet() httpMethod="GET"
     {
         myReturnVar = {};
         myReturnVar["success"] = true;
@@ -11,7 +11,7 @@ component rest="true" restPath="/test"
         return myReturnVar;
     }
 
-    public function testFunction() httpMethod="POST"
+    remote function testFunctionPost() httpMethod="POST"
     {
         myReturnVar = {};
         myReturnVar["success"] = true;
