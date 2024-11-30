@@ -15,7 +15,7 @@ return a JSON object with a few properties.
 ### Changing Lucee Engine Versions
 
 - Edit the `frontend/Dockerfile` and change the `FROM lucee/lucee:5.4-light` to the version you wish to
-test. This has been known to fail with `lucee/lucee:6.1-light` and `lucee/lucee:6.2-light`.
+test. This has been known to fail with `lucee/lucee:6.1-light` and `lucee/lucee:6.2.0.166-RC-light`.
 - Clean up any previous containers by issuing the command `docker compose down`
 - Rebuild the container by issuing the command `docker compose build`.
 - Run the new version by issuing the command `docker compose up`.
